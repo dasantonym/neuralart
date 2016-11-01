@@ -211,7 +211,7 @@ local frames_dir = opt.output_dir
 if not paths.dirp(frames_dir) then
     paths.mkdir(frames_dir)
 end
-image.save(paths.concat(frames_dir, '0000.jpg'), output)
+image.save(paths.concat(frames_dir, '0000.png'), output)
 
 -- set optimizer options
 local optim_state
@@ -255,7 +255,7 @@ for i = 1, opt.num_iters do
         if opt.display_interval > 0 and i % opt.display_interval == 0 then
             image.display(output)
         end
-        image.save(paths.concat(frames_dir, string.format('%04d.jpg',i)), output)
+        image.save(paths.concat(frames_dir, string.format('%04d.png',i)), output)
     end
 end
 
