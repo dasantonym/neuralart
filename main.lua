@@ -31,6 +31,7 @@ cmd:option('--backend',         'cunn',   '{cunn, cudnn}. Neural network CUDA ba
 cmd:option('--optimizer',       'lbfgs',  '{sgd, lbfgs}. Optimization algorithm.')
 cmd:option('--cpu',              false,   'Optimize on CPU (only with VGG network).')
 cmd:option('--output_dir',      'frames', 'Output directory to save to.' )
+cmd:option('--gpu',             1,        'Select GPU to use.' )
 opt = cmd:parse(arg)
 if opt.size <= 0 then
     opt.size = nil
@@ -39,6 +40,13 @@ end
 if not opt.cpu then
     require 'cutorch'
     require 'cunn'
+
+    local count = cutorch.getDeviceCount();
+    print('CUDA device count: ' .. count);
+    cutorch.setDevice(opt.gpu);
+    print('CUDA using device: ' .. cutorch.getDevice());
+    local freeMemory, totalMemory = cutorch.getMemoryUsage(cutorch.getDevice());
+    print('CUDA available memory: ' .. freeMemory .. '/' .. totalMemory .. ' bytes');
 end
 
 paths.dofile('models/util.lua')
