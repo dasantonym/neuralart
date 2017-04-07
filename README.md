@@ -50,6 +50,7 @@ Other options:
 - `backend`: {cunn, cudnn}. Neural network CUDA backend. `cudnn` requires the [Torch bindings](https://github.com/soumith/cudnn.torch/tree/R3) for CuDNN R3.
 - `optimizer`: {sgd, lbfgs}. Optimization algorithm. `lbfgs` is slower per iteration and consumes more memory, but may yield better results. Default is `lbfgs`.
 - `cpu`: Optimize on CPU instead of GPU (only VGG model supported).
+- `gpu`: Select CUDA device (1-based). Default is `1`.
 
 ### Out of memory?
 
