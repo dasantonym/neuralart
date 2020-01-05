@@ -9,17 +9,15 @@ RUN apt-get update && apt-get install -y sudo wget build-essential cmake curl gf
 RUN git clone https://github.com/torch/distro.git /root/torch --recursive
 RUN cd /root/torch && bash install-deps
 
-RUN \
-    cd /root/torch && ./install.sh \
-    ln -s /root/torch/install/bin/* /usr/local/bin \
-    apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN cd /root/torch && ./install.sh
+RUN ln -s /root/torch/install/bin/* /usr/local/bin
 
-RUN \
-    luarocks install cutorch \
-    luarocks install cunn \
-    luarocks install cudnn \
-    luarocks install inn
+RUN luarocks install cutorch
+RUN luarocks install cunn
+RUN luarocks install cudnn
+RUN luarocks install inn
 
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 # suppress message `tput: No value for $TERM and no -T specified`
 ENV TERM xterm
 
