@@ -26,4 +26,5 @@ WORKDIR /root/neuralart
 
 RUN bash download_models.sh
 
-CMD qlua main.lua
+ENTRYPOINT ["/usr/local/bin/qlua", "main.lua"]
+CMD ["--style", "style.png", "--content", "content.png"]
