@@ -1,0 +1,6 @@
+Dockerfile
+examples
+.git
+.DS_Store
+*.md
+*.txt
