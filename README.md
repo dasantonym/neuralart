@@ -72,6 +72,25 @@ If all else fails (or if you don't have a CUDA-compatible GPU), you can optimize
 qlua main.lua --style <style.jpg> --content <content.jpg> --cpu
 ```
 
+## Docker
+
+[nvidia-docker](https://github.com/NVIDIA/nvidia-docker) needs to be available.
+
+Build with `docker build -t neuralart .`.
+
+Run with defaults:
+
+```
+sudo docker run -it --gpus '"device=1"' \
+ --mount type=bind,source=$(pwd)/output,target=/root/neuralart/frames \
+ --mount type=bind,source=$(pwd)/style.png,target=/root/neuralart/style.png \
+ --mount type=bind,source=$(pwd)/content.png,target=/root/neuralart/content.png \
+ neuralart
+```
+
+Adding arguments sets everything after `qlua main.lua`.
+
+
 ## Examples
 
 The Eiffel Tower in the style of Edvard Munch's *The Scream*:
