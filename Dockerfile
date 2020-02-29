@@ -25,3 +25,5 @@ COPY . /root/neuralart
 WORKDIR /root/neuralart
 
 RUN bash download_models.sh
+
+CMD qlua main.lua
